@@ -25,7 +25,8 @@ import {
 const heroImage = "/manus-storage/gsfs-hero-geospatial_5560c685.png";
 const strataImage = "/manus-storage/gsfs-strata-texture_a1871bb4.png";
 const flowImage = "/manus-storage/gsfs-conceptual-flow_97cfcd66.png";
-const markImage = "/manus-storage/gsfs-mark_03e874f0.png";
+const officialLockup = "/manus-storage/gsfs-official-lockup_d0e90a71.png";
+const officialSymbol = "/manus-storage/gsfs-official-symbol_9f99c13b.png";
 
 const navigation = [
   ["Overview", "overview"],
@@ -151,12 +152,10 @@ const faqs = [
 function Logo({ compact = false }: { compact?: boolean }) {
   return (
     <a className="brand" href="#overview" aria-label="GSFS home">
-      <img className="brand-mark" src={markImage} alt="" decoding="async" />
-      {!compact && (
-        <span className="brand-copy">
-          <strong>GSFS</strong>
-          <small>Geo-Spectral Fusion Scanner</small>
-        </span>
+      {compact ? (
+        <img className="brand-symbol" src={officialSymbol} alt="" decoding="async" />
+      ) : (
+        <img className="brand-lockup" src={officialLockup} alt="GSFS — Ground Scanning Fusion System" decoding="async" />
       )}
     </a>
   );
@@ -389,10 +388,10 @@ export default function Home() {
               <SectionMarker number="03" label="GSFS approach" />
               <div>
                 <p className="section-kicker">Proposed architecture</p>
-                <h2 id="technology-title">Designed to coordinate information, not overstate it.</h2>
+                <h2 id="technology-title">Designed to scan, correlate and coordinate information—not merely overstate it.</h2>
               </div>
               <p>
-                The GSFS approach is modular and vendor-agnostic at a public level. Commercial sensing and integration components may be selected, integrated, customized, licensed or obtained through OEM and specialist partnerships.
+                The GSFS approach is modular and vendor-agnostic at a public level. It is being developed to bring complementary sensor readings into a structured, georeferenced view—helping technical teams examine signals that may otherwise remain disconnected and use them to inform their next decision. Commercial sensing and integration components may be selected, integrated, customized, licensed or obtained through OEM and specialist partnerships.
               </p>
             </div>
             <div className="approach-list">
@@ -527,7 +526,7 @@ export default function Home() {
 
         <section className="founder-section section-shell" aria-labelledby="founder-title">
           <div className="container founder-layout">
-            <div className="founder-mark"><img src={markImage} alt="" loading="lazy" decoding="async" /><span>BRAZIL</span></div>
+            <div className="founder-mark"><img src={officialSymbol} alt="" loading="lazy" decoding="async" /><span>BRAZIL</span></div>
             <div>
               <p className="section-kicker">Founder & origin</p>
               <h2 id="founder-title">Valdinei Costa Peixoto</h2>
@@ -618,7 +617,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="container footer-top">
           <Logo />
-          <p>GSFS — Geo-Spectral Fusion Scanner.<br />Brazilian technology under development.</p>
+          <p>GSFS — Ground Scanning Fusion System.<br />Brazilian technology under development.</p>
           <a href="#overview" className="footer-top-link">Back to top <ArrowRight size={15} aria-hidden="true" /></a>
         </div>
         <div className="container footer-bottom">

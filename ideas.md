@@ -104,3 +104,4 @@ A implementação pública deverá manter o conteúdo principal em inglês inter
 - A espinha lateral de investigação será tratada como um sistema contínuo de dossiê técnico: marcos numerados, réguas graduadas e etiquetas de evidência, não como tags isoladas.
 - Módulos repetidos usarão divisores estratigráficos, marcadores de coordenada, superfícies em camadas e sequenciamento anotado para evitar a aparência de cartões SaaS intercambiáveis.
 - O lockup GSFS adotará espaçamento técnico, símbolo de camada/varredura recorrente e tratamento de palavra próprio; ciano significa sinal/localização/correlação e verde permanece exclusivo para priorização, prontidão ou colaboração.
+- O lockup horizontal oficial aprovado e o símbolo oficial isolado substituem qualquer interpretação gráfica própria da marca. O uso preserva proporção, contraste e a denominação oficial: **GSFS — Ground Scanning Fusion System**.
