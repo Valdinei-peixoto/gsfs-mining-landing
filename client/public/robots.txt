@@ -1,0 +1,3 @@
+# GSFS review-stage institutional site — indexing remains disabled until final domain and contact details are approved.
+User-agent: *
+Disallow: /
