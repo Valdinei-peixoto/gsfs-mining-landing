@@ -27,6 +27,9 @@ const strataImage = "/manus-storage/gsfs-strata-texture_a1871bb4.png";
 const flowImage = "/manus-storage/gsfs-conceptual-flow_97cfcd66.png";
 const officialLockup = "/manus-storage/gsfs-official-lockup_d0e90a71.png";
 const officialSymbol = "/manus-storage/gsfs-official-symbol_9f99c13b.png";
+const contactEmail = import.meta.env.VITE_GSFS_CONTACT_EMAIL?.trim();
+const virtualDemonstratorUrl = "https://valdinei-peixoto.github.io/gsfs-virtual-oficial/prototype";
+const institutionalVideoUrl = "https://valdinei-peixoto.github.io/gsfs-mining-landing/GSFS_video_institucional_24MB_final.mp4";
 
 const navigation = [
   ["Overview", "overview"],
@@ -173,7 +176,7 @@ function SectionMarker({ label, number }: { label: string; number: string }) {
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [formState, setFormState] = useState<"idle" | "invalid" | "confirmed">("idle");
+  const [formState, setFormState] = useState<"idle" | "invalid" | "confirmed" | "unavailable">("idle");
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const mobileNavRef = useRef<HTMLElement>(null);
 
@@ -221,7 +224,24 @@ export default function Home() {
       form.reportValidity();
       return;
     }
+    if (!contactEmail) {
+      setFormState("unavailable");
+      return;
+    }
+
+    const data = new FormData(form);
+    const subject = `GSFS mining collaboration — ${data.get("organization")}`;
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Organization: ${data.get("organization")}`,
+      `Work email: ${data.get("email")}`,
+      `Area of interest: ${data.get("interest")}`,
+      "",
+      String(data.get("message") ?? ""),
+    ].join("\n");
+
     setFormState("confirmed");
+    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
   function closeMenu() {
@@ -296,7 +316,7 @@ export default function Home() {
                 <p className="eyebrow"><span /> Multimodal Subsurface Intelligence for Mining</p>
                 <h1 id="hero-title">Reducing subsurface uncertainty for better exploration decisions.</h1>
                 <p className="hero-lede">
-                  GSFS is a Brazilian deeptech initiative developing a patented multimodal subsurface sensing architecture designed to support more informed investigation and target-prioritization decisions.
+                  GSFS is a Brazilian deeptech initiative developing a patent-pending multimodal subsurface sensing architecture designed to support more informed investigation and target-prioritization decisions.
                 </p>
                 <div className="hero-actions">
                   <a className="button button-primary" href="#contact">
@@ -480,6 +500,14 @@ export default function Home() {
               <Sparkles size={18} aria-hidden="true" />
               <p><b>Transparency note:</b> GSFS Virtual is a high-fidelity conceptual technical demonstrator. It is not a physical device, industrial pilot or evidence of detection performance.</p>
             </div>
+            <div className="hero-actions" aria-label="GSFS institutional media">
+              <a className="button button-secondary" href={virtualDemonstratorUrl} target="_blank" rel="noreferrer">
+                Explore GSFS Virtual <ArrowRight size={17} aria-hidden="true" />
+              </a>
+              <a className="button button-secondary" href={institutionalVideoUrl} target="_blank" rel="noreferrer">
+                Watch Institutional Video <ArrowRight size={17} aria-hidden="true" />
+              </a>
+            </div>
           </div>
         </section>
 
@@ -543,10 +571,10 @@ export default function Home() {
               <p className="section-kicker section-kicker-light">Start a considered conversation</p>
               <h2 id="contact-title">Discuss a Pilot or Strategic Collaboration.</h2>
               <p>
-                Share your area of interest and the context you would like to explore. This review-stage form validates information locally and does not transmit messages.
+                Share your area of interest and the context you would like to explore. After validation, your email application will open with the inquiry prepared for review before sending.
               </p>
               <div className="contact-assurances">
-                <span><ShieldCheck size={16} aria-hidden="true" /> No data transmission</span>
+                <span><ShieldCheck size={16} aria-hidden="true" /> You review the message before sending</span>
                 <span><ShieldCheck size={16} aria-hidden="true" /> No sensitive technical disclosure requested</span>
               </div>
             </div>
@@ -584,12 +612,13 @@ export default function Home() {
                 <textarea name="message" required rows={4} placeholder="Describe the collaboration context you would like to discuss." />
               </label>
               <div className="form-submit-row">
-                <button className="button button-primary" type="submit">Validate inquiry <ArrowRight size={17} aria-hidden="true" /></button>
+                <button className="button button-primary" type="submit">Prepare email <ArrowRight size={17} aria-hidden="true" /></button>
                 <p>Required fields are marked with <b>*</b></p>
               </div>
               <div className={`form-message ${formState === "idle" ? "form-message-hidden" : ""}`} aria-live="polite" role="status">
                 {formState === "invalid" && "Please complete the required fields with valid information. No information has been sent."}
-                {formState === "confirmed" && "Your information is complete. This review-stage form is a local demonstration only; no message has been sent or stored."}
+                {formState === "confirmed" && "Your email application has been opened with the inquiry prepared. Review it before sending."}
+                {formState === "unavailable" && "The institutional contact address is being configured. Please use the official contact channel provided with the application materials."}
               </div>
             </form>
           </div>
