@@ -158,7 +158,7 @@ function Logo({ compact = false }: { compact?: boolean }) {
       {compact ? (
         <img className="brand-symbol" src={officialSymbol} alt="" decoding="async" />
       ) : (
-        <img className="brand-lockup" src={officialLockup} alt="GSFS — Ground Scanning Fusion System" decoding="async" />
+        <img className="brand-lockup" src={officialLockup} alt="GSFS — Geo-Spectral Fusion Scanner" decoding="async" />
       )}
     </a>
   );
@@ -646,7 +646,7 @@ export default function Home() {
       <footer className="site-footer">
         <div className="container footer-top">
           <Logo />
-          <p>GSFS — Ground Scanning Fusion System.<br />Brazilian technology under development.</p>
+          <p>GSFS — Geo-Spectral Fusion Scanner.<br />Brazilian technology under development.</p>
           <a href="#overview" className="footer-top-link">Back to top <ArrowRight size={15} aria-hidden="true" /></a>
         </div>
         <div className="container footer-bottom">
