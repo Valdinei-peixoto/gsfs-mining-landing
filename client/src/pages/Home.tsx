@@ -29,7 +29,7 @@ const officialLockup = "/manus-storage/gsfs-official-lockup_d0e90a71.png";
 const officialSymbol = "/manus-storage/gsfs-official-symbol_9f99c13b.png";
 const contactEmail = import.meta.env.VITE_GSFS_CONTACT_EMAIL?.trim();
 const virtualDemonstratorUrl = "https://valdinei-peixoto.github.io/gsfs-virtual-oficial/prototype";
-const institutionalVideoUrl = "https://github.com/Valdinei-peixoto/gsfs-virtual-oficial/blob/main/video/gsfs-virtual-institucional.mp4";
+const institutionalVideoUrl = "https://valdinei-peixoto.github.io/gsfs-mining-landing/GSFS_video_institucional_24MB_final.mp4";
 
 const navigation = [
   ["Overview", "overview"],
